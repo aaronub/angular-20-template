@@ -1,0 +1,146 @@
+---
+  name: Publish
+  
+  on:
+    pull_request:
+      branches:
+        - main
+    push:
+      branches:
+        - main
+  
+  jobs:
+  
+    # publishToFabric:
+    #   runs-on: fabric-dev
+    #   name: Publish to the Fabric NPM Repository
+  
+    #   steps:
+    #     - name: Checkout the Code
+    #       uses: actions/checkout@v4
+  
+    #     - name: Use Node.js Version 20
+    #       uses: actions/setup-node@v4
+    #       with:
+    #         node-version: 20      
+
+    #     - name: Install Dependencies
+    #       run: npm ci --ignore-scripts
+
+    #     - name: Read Package Version and RC flag
+    #       id: version
+    #       run: |
+    #         VERSION=$(node -p "require('./package.json').version")
+    #         echo "version=$VERSION" >> $GITHUB_OUTPUT
+    #         if [[ "$VERSION" =~ -rc([.-]?[0-9]+)?$ ]]; then
+    #           echo "is_rc=true" >> $GITHUB_OUTPUT
+    #         else
+    #           echo "is_rc=false" >> $GITHUB_OUTPUT
+    #         fi
+
+    #     - name: Setup the Environment
+    #       uses: wexinc/shared-actions/fabric/setup-env@v1
+
+    #     - name: Lint
+    #       run: npm run lint
+
+    #     - name: Build (gated by lint via prebuild)
+    #       run: npm run build
+
+    #     - name: Generate the Runtime Configuration File
+    #       run: |
+    #         rm -rf .npmrc
+    #         echo "registry=https://registry.npmjs.org/" > .npmrc
+    #         echo "@wexinc:registry=https://usartifactorywexinc.jfrog.io/artifactory/api/npm/fabric-npm-prod-federated-us" >> .npmrc
+    #         echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/fabric-npm-prod-federated-us/:_authToken=${{ secrets.ARTIFACTORY_FEDERATED_TOKEN }}" >> .npmrc
+    #         echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/fabric-npm-prod-federated-us/:always-auth=true" >> .npmrc
+  
+    #     - name: Publish the Release to Artifactory
+    #       if: (github.event_name == 'pull_request' && steps.version.outputs.is_rc == 'true') || (github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && steps.version.outputs.is_rc != 'true')
+    #       run: |
+    #         jf npm publish --build-name=${{ github.event.repository.name }} --build-number=${{ github.run_number }}      
+    #         jf rt bp "${{ github.event.repository.name }}" "${{ github.run_number }}"
+  
+    #     - name: Promote the Release to the fabric-npm-prod-federated-us Production Repository
+    #       if: (github.event_name == 'pull_request' && steps.version.outputs.is_rc == 'true') || (github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && steps.version.outputs.is_rc != 'true')
+    #       run: |
+    #         jf rt bpr \
+    #           --status=promoted \
+    #           --comment="Promoting build ${{ github.run_number }} to production" \
+    #           "${{ github.event.repository.name }}" \
+    #           "${{ github.run_number }}" \
+    #           "fabric-npm-prod-federated-us"
+  
+    # publishToWexNpmProd:
+    publish:
+      runs-on: wex-sandbox
+      name: Publish
+  
+      steps:
+        - name: Checkout the Code
+          uses: actions/checkout@v4
+  
+        - name: Use Node.js Version 20
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: Install Dependencies
+          run: npm ci --ignore-scripts
+
+        - name: Read Package Version and RC flag
+          id: version
+          run: |
+            VERSION=$(node -p "require('./package.json').version")
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            if [[ "$VERSION" =~ -rc([.-]?[0-9]+)?$ ]]; then
+              echo "is_rc=true" >> $GITHUB_OUTPUT
+            else
+              echo "is_rc=false" >> $GITHUB_OUTPUT
+            fi
+
+        - name: Setup the Environment
+          uses: wexinc/shared-actions/fabric/setup-env@v1
+
+        - name: Lint
+          run: npm run lint
+
+        - name: Build (gated by lint via prebuild)
+          run: npm run build
+
+        - name: Generate the Runtime Configuration File
+          run: |
+            rm -rf .npmrc
+            echo "registry=https://registry.npmjs.org/" > .npmrc
+            echo "@wexinc:registry=https://usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod" >> .npmrc
+            echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:_authToken=${{ secrets.ARTIFACTORY_WEX_NPM_TOKEN }}" >> .npmrc
+            echo "//usartifactorywexinc.jfrog.io/artifactory/api/npm/wex-npm-prod/:always-auth=true" >> .npmrc
+        
+        - name: Prepare the package.json File in the dist Directory (flatten package root)
+          run: |
+            node -e "const fs=require('fs'); const pkg=JSON.parse(fs.readFileSync('package.json','utf8')); pkg.main='index.js'; pkg.types='index.d.ts'; delete pkg.files; delete pkg.publishConfig; delete pkg.scripts; delete pkg.devDependencies; fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));"
+      
+        - name: Publish the Release to Artifactory
+          if: (github.event_name == 'pull_request' && steps.version.outputs.is_rc == 'true') || (github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && steps.version.outputs.is_rc != 'true')
+          run: | 
+            (cd dist && jf npm publish --build-name=${{ github.event.repository.name }} --build-number=${{ github.run_number }})
+            jf rt bp "${{ github.event.repository.name }}" "${{ github.run_number }}"
+  
+        - name: Promote the Release to the wex-npm-prod Repository
+          if: (github.event_name == 'pull_request' && steps.version.outputs.is_rc == 'true') || (github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && steps.version.outputs.is_rc != 'true')
+          run: |
+            jf rt bpr \
+              --status=promoted \
+              --comment="Promoting build ${{ github.run_number }} to production" \
+              "${{ github.event.repository.name }}" \
+              "${{ github.run_number }}" \
+              "wex-npm-prod"
+  
+        - name: Create the GitHub Release          
+          if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && steps.version.outputs.is_rc != 'true'
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          with:
+            tag_name: v${{ steps.version.outputs.version }}
+            release_name: WEX Brand Theme Version ${{ steps.version.outputs.version }}

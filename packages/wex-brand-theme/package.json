@@ -1,0 +1,62 @@
+{
+  "name": "@wexinc/wex-brand-theme",
+  "version": "1.0.1",
+  "description": "WEX brand theme for PrimeFaces components",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "**/*"
+  ],
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "scripts": {
+    "build": "sh -c \"if [ -z \\\"$CI\\\" ]; then npm install -f; fi; tsc\"",
+    "prebuild": "npm i -f && npm run lint",
+    "postbuild": "cp README.md dist/ && cp LICENSE dist/",
+    "lint": "echo 'Running ESLint...' && eslint . --ext .ts,.tsx,.js,.jsx --max-warnings=0 && echo 'ESLint passed: no problems found'",
+    "clean": "rimraf dist",
+    "watch": "tsc --watch",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "angular",
+    "design-system",
+    "phoenix",
+    "prime",
+    "primefaces",
+    "primeng",
+    "primereact",
+    "react",
+    "theme",
+    "wex"
+  ],
+  "author": "WEX Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wexinc/wex-brand-theme.git",
+    "directory": "wex-brand-theme"
+  },
+  "bugs": {
+    "url": "https://github.com/wexinc/wex-brand-theme/issues"
+  },
+  "peerDependencies": {
+    "@primeuix/themes": "^1.2.3"
+  },
+  "dependencies": {
+    "@primeuix/themes": "^1.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "eslint": "^8.57.0",
+    "typescript": "5.4.5",
+    "rimraf": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
