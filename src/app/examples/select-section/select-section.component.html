@@ -1,0 +1,57 @@
+<div class="select-section">
+  <h2 class="text-3xl">Select Section</h2>
+
+  <div class="card flex flex-wrap justify-center items-end gap-4">
+    <!-- Basic Select -->
+    <div class="flex flex-col gap-2">
+      <label for="basic-select">Basic Select:</label>
+      <p-select 
+        [options]="cities" 
+        [(ngModel)]="selectedCity" 
+        optionLabel="name" 
+        placeholder="Select a City" 
+        class="w-full md:w-56"
+      />
+    </div>
+
+    <!-- Select with Checkmark -->
+    <div class="flex flex-col gap-2">
+      <label for="checkmark-select">Select with Checkmark:</label>
+      <p-select 
+        [options]="cities" 
+        [(ngModel)]="selectedCityWithCheckmark" 
+        [checkmark]="true" 
+        optionLabel="name" 
+        [showClear]="true" 
+        placeholder="Select a City" 
+        class="w-full md:w-56"
+      />
+    </div>
+
+    <!-- Editable Select -->
+    <div class="flex flex-col gap-2">
+      <label for="editable-select">Editable Select:</label>
+      <p-select 
+        [options]="cities" 
+        [(ngModel)]="selectedCityEditable" 
+        placeholder="Select a City" 
+        [editable]="true" 
+        optionLabel="name" 
+        class="w-full md:w-56"
+      />
+    </div>
+
+    <!-- Select with Clear -->
+    <div class="flex flex-col gap-2">
+      <label for="clear-select">Select with Clear:</label>
+      <p-select 
+        [options]="cities" 
+        [(ngModel)]="selectedCityWithClear" 
+        optionLabel="name" 
+        [showClear]="true" 
+        placeholder="Select a City" 
+        class="w-full md:w-56"
+      />
+    </div>
+  </div>
+</div>

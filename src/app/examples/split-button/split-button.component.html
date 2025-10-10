@@ -1,0 +1,44 @@
+<!-- Basic
+SplitButton has a default action button and a collection of additional options defined by the model property based on MenuModel API. -->
+<p-splitbutton label="Save" (onClick)="save('info')" [model]="items" />
+
+
+
+<!-- Nested
+SplitButton has a default action button and a collection of additional options defined by the model property based on MenuModel API. -->
+<p-splitbutton label="Save" (onClick)="save('info')" [model]="items2" />
+
+
+<!-- Rounded
+Rounded buttons have a circular border radius. -->
+<p-splitbutton label="Primary" [model]="items" (onClick)="save('info')" rounded />
+<p-splitbutton label="Secondary" [model]="items" (onClick)="save('info')" rounded severity="secondary" />
+<p-splitbutton label="Success" [model]="items" (onClick)="save('info')" rounded severity="success" />
+<p-splitbutton label="Info" [model]="items" (onClick)="save('info')" rounded severity="info" />
+<p-splitbutton label="Warning" [model]="items" (onClick)="save('info')" rounded severity="warn" />
+<p-splitbutton label="Help" [model]="items" (onClick)="save('info')" rounded severity="help" />
+<p-splitbutton label="Danger" [model]="items" (onClick)="save('info')" rounded severity="danger" />
+<p-splitbutton label="Contrast" [model]="items" (onClick)="save('info')" rounded severity="contrast" />
+
+
+<!-- Text
+Text buttons are displayed as textual elements. -->
+<p-splitbutton label="Primary" [model]="items" (onClick)="save('info')" text />
+
+
+
+<!-- Outlined
+Outlined buttons display a border without a background initially. -->
+<p-splitbutton label="Primary" [model]="items" (onClick)="save('info')" outlined />
+
+
+<!-- Sizes
+SplitButton provides small and large sizes as alternatives to the standard. -->
+<p-splitbutton label="Small" [model]="items" (onClick)="save('info')" size="small" />
+<p-splitbutton label="Normal" [model]="items" (onClick)="save('info')" />
+<p-splitbutton label="Large" [model]="items" (onClick)="save('info')" size="large" />
+
+
+<!-- Disabled
+When the disabled attribute is present, the element is uneditable and unfocused. Additionally, the disabled states of the button and menu button can be handled independently. The button is disabled when buttonDisabled is present, and the menu button is disabled when menuButtonDisabled is present. -->
+<p-splitbutton label="Save" icon="pi pi-plus" (onClick)="save('info')" [model]="items" [disabled]="true" />

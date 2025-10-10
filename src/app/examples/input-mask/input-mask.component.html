@@ -1,0 +1,62 @@
+<!-- Basic
+InputMask is used as a controlled input with ngModel properties. -->
+<div class="card flex justify-center">
+    <p-inputmask mask="99-999999" [(ngModel)]="value" placeholder="99-999999" />
+</div>
+
+
+<!-- Mask
+Mask format can be a combination of the following definitions; a for alphabetic characters, 9 for numeric characters and * for alphanumberic characters. In addition, formatting characters like ( , ) , - are also accepted. -->
+<p-fluid class="card flex flex-wrap gap-4">
+    <div class="flex-auto">
+        <span class="font-bold block mb-2">SSN</span>
+        <p-inputmask mask="999-99-9999" [(ngModel)]="value1" placeholder="999-99-9999" />
+    </div>
+    <div class="flex-auto">
+        <span class="font-bold block mb-2">Phone</span>
+        <p-inputmask mask="(999) 999-9999" [(ngModel)]="value2" placeholder="(999) 999-9999" />
+    </div>
+    <div class="flex-auto">
+        <span class="font-bold block mb-2">Serial Number</span>
+        <p-inputmask mask="a*-999-a999" [(ngModel)]="value3" placeholder="a*-999-a999" />
+    </div>
+</p-fluid>
+
+
+<!-- Float Label
+FloatLabel visually integrates a label with its form element. Visit FloatLabel documentation for more information. -->
+<div class="card flex flex-wrap justify-center items-end gap-4">
+    <p-floatlabel>
+        <p-inputmask id="over_label" [(ngModel)]="value1" mask="999-99-9999" />
+        <label for="over_label">Over Label</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="in">
+        <p-inputmask id="in_label" [(ngModel)]="value2" mask="999-99-9999" />
+        <label for="in_label">In Label</label>
+    </p-floatlabel>
+
+    <p-floatlabel variant="on">
+        <p-inputmask id="on_label" [(ngModel)]="value3" mask="999-99-9999" />
+        <label for="on_label">On Label</label>
+    </p-floatlabel>
+</div>
+
+
+<!-- Sizes
+InputMask provides small and large sizes as alternatives to the base. -->
+<div class="card flex flex-col items-center gap-4">
+    <p-inputmask [(ngModel)]="value1" placeholder="Small" size="small" mask="99-999999" />
+    <p-inputmask [(ngModel)]="value2" placeholder="Normal" mask="99-999999" />
+    <p-inputmask [(ngModel)]="value3" placeholder="Large" size="large" mask="99-999999" />
+</div>
+
+
+<!-- Invalid
+Invalid state style is added using the ng-invalid and ng-dirty class to indicate a failed validation. -->
+<p-inputmask mask="999-99-9999" [(ngModel)]="value" class="ng-invalid ng-dirty" placeholder="Serial Key" />
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused. -->
+<p-inputmask mask="999-99-9999" [(ngModel)]="value" [disabled]="true" />

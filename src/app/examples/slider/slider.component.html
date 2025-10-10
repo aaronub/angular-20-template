@@ -1,0 +1,8 @@
+<!-- Basic
+Two-way binding is defined using the standard ngModel directive. -->
+<p-slider [(ngModel)]="value" styleClass="w-56" />
+
+
+<!-- Range
+When range property is present, slider provides two handles to define two values. In range mode, value should be an array instead of a single value. -->
+<p-slider [(ngModel)]="rangeValues" [range]="true" styleClass="w-56" />

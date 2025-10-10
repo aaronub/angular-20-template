@@ -1,0 +1,23 @@
+<!-- Basic
+SelectButton requires a value to bind and a collection of options. -->
+<p-selectbutton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value" aria-labelledby="basic" />
+
+
+<!-- Multiple
+SelectButton allows selecting only one item by default and setting multiple option enables choosing more than one item. In multiple case, model property should be an array. -->
+<p-selectbutton [options]="paymentOptions" [(ngModel)]="value1" [multiple]="true" optionLabel="name" optionValue="value" />
+
+
+<!-- Template
+For custom content support define a template named item where the default local template variable refers to an option. -->
+<p-selectbutton [options]="justifyOptions" [(ngModel)]="value2" optionLabel="justify">
+    <ng-template #item let-item>
+        <i [class]="item.icon"></i>
+    </ng-template>
+</p-selectbutton>
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused entirely. Certain options can also be disabled using the optionDisabled property. -->
+<p-selectbutton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value" [disabled]="true" />
+<p-selectbutton [options]="stateOptions2" [(ngModel)]="value2" optionLabel="label" optionValue="value" optionDisabled="constant" />

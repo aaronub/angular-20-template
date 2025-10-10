@@ -1,0 +1,13 @@
+<!-- Basic
+Two-way value binding is defined using ngModel. -->
+<p-rating [(ngModel)]="value" />
+
+
+<!-- ReadOnly
+When readOnly present, value cannot be edited. -->
+<p-rating [(ngModel)]="value" [readonly]="true" />
+
+
+<!-- Disabled
+When disabled is present, a visual hint is applied to indicate that the Knob cannot be interacted with. -->
+<p-rating [(ngModel)]="value" [disabled]="true" />

@@ -1,0 +1,45 @@
+<!-- Basic
+Tree component requires an array of TreeNode objects as its value. -->
+<p-tree [value]="files" styleClass="w-full md:w-[30rem]" />
+
+
+
+<!-- Selection
+Single
+Single node selection is configured by setting selectionMode as single along with selection properties to manage the selection value binding. -->
+<p-tree [value]="files" styleClass="w-full md:w-[30rem]" selectionMode="single" [(selection)]="selectedFile" />
+
+<!-- Multiple
+More than one node is selectable by setting selectionMode to multiple. By default in multiple selection mode, metaKey press (e.g. ⌘) is necessary to add to existing selections however this can be configured with disabling the metaKeySelection property. Note that in touch enabled devices, Tree always ignores metaKey.
+In multiple selection mode, value binding should be a key-value pair where key is the node key and value is a boolean to indicate selection. -->
+<div class="flex items-center mb-6 gap-2">
+    <p-toggleswitch inputId="input-metakey" [(ngModel)]="metaKeySelection" />
+    <label for="input-metakey">MetaKey</label>
+</div>
+<p-tree [metaKeySelection]="metaKeySelection" [value]="files" styleClass="w-full md:w-[30rem]" selectionMode="multiple" [(selection)]="selectedFiles" />
+
+<!-- Checkbox
+Selection of multiple nodes via checkboxes is enabled by configuring selectionMode as checkbox. -->
+<p-tree [value]="files" selectionMode="checkbox" styleClass="w-full md:w-[30rem]" [(selection)]="selectedFiles" />
+
+
+
+<!-- Template
+Custom node content instead of a node label is defined with the pTemplate property. -->
+<p-tree [value]="nodes" styleClass="w-full md:w-[30rem]">
+    <ng-template let-node pTemplate="url">
+        <a [href]="node.data" target="_blank" rel="noopener noreferrer" class="text-surface-700 dark:text-surface-100 hover:text-primary">
+            {{ node.label }}
+        </a>
+    </ng-template>
+    <ng-template let-node pTemplate="default">
+        <b>{{ node.label }}</b>
+    </ng-template>
+</p-tree>
+
+
+
+<!-- Filter
+Filtering is enabled by adding the filter property, by default label property of a node is used to compare against the value in the text field, in order to customize which field(s) should be used during search define filterBy property. In addition filterMode specifies the filtering strategy. In lenient mode when the query matches a node, children of the node are not searched further as all descendants of the node are included. On the other hand, in strict mode when the query matches a node, filtering continues on all descendants. -->
+<p-tree [value]="files" styleClass="w-full md:w-[30rem]" [filter]="true" filterPlaceholder="Lenient Filter" />
+<p-tree [value]="files" styleClass="w-full md:w-[30rem]" [filter]="true" filterMode="strict" filterPlaceholder="Strict Filter" />

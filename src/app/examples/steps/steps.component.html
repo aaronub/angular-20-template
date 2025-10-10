@@ -1,0 +1,9 @@
+<!-- Basic
+Steps requires a collection of menuitems as its model. -->
+<p-steps [model]="items" [readonly]="true" />
+
+
+<!-- Interactive
+In order to add interactivity to the component, disable readonly and use a binding to activeIndex along with activeIndexChange to control the Steps. -->
+<p-toast />
+<p-steps [model]="items2" [readonly]="false" [activeIndex]="activeIndex" (activeIndexChange)="onActiveIndexChange($event)" />

@@ -1,0 +1,25 @@
+<!-- Basic
+Breadcrumb provides contextual information about page hierarchy. -->
+<p-breadcrumb class="max-w-full" [model]="items" [home]="home" />
+
+
+
+<!-- Router
+Items with navigation are defined with templating to be able to use a routerLink directive, an external link or programmatic navigation. -->
+<div class="card flex justify-center">
+    <p-breadcrumb class="max-w-full" [model]="items2">
+        <ng-template #item let-item>
+            <ng-container *ngIf="item.route; else elseBlock">
+                <a [routerLink]="item.route" class="p-breadcrumb-item-link">
+                    <span [ngClass]="[item.icon ? item.icon : '', 'text-color']"></span>
+                    <span class="text-primary font-semibold">{{ item.label }}</span>
+                </a>
+            </ng-container>
+            <ng-template #elseBlock>
+                <a [href]="item.url">
+                    <span class="text-color">{{ item.label }}</span>
+                </a>
+            </ng-template>
+        </ng-template>
+    </p-breadcrumb>
+</div>

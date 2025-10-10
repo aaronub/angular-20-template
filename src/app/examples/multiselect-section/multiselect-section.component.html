@@ -1,0 +1,55 @@
+<div class="multiselect-section">
+  <h2 class="text-3xl">MultiSelect Section</h2>
+
+  <div class="card">
+    <!-- First Row: Reactive Forms and Chips -->
+    <div class="flex flex-wrap justify-center gap-4 mb-4">
+      <!-- Reactive Forms -->
+      <div class="flex flex-col gap-2">
+        <label>Reactive Forms:</label>
+        <form [formGroup]="formGroup" class="flex flex-col gap-2">
+          <p-multiselect 
+            [options]="cities" 
+            formControlName="selectedCities" 
+            optionLabel="name" 
+            placeholder="Select Cities" 
+            [maxSelectedLabels]="3" 
+            styleClass="w-full md:w-80">
+          </p-multiselect>
+        </form>
+      </div>
+
+      <!-- MultiSelect with Chips -->
+      <div class="flex flex-col gap-2">
+        <label>Chips:</label>
+        <p-multiselect 
+          [options]="cities" 
+          [(ngModel)]="selectedCitiesWithChips" 
+          placeholder="Select Cities" 
+          [maxSelectedLabels]="3" 
+          optionLabel="name" 
+          display="chip" 
+          styleClass="w-full md:w-80">
+        </p-multiselect>
+      </div>
+    </div>
+
+    <!-- Second Row: Float Label -->
+    <div class="flex justify-center">
+      <div class="flex flex-col gap-2">
+        <label>Float Label:</label>
+        <p-floatlabel class="w-full md:w-80" variant="in">
+          <p-multiselect 
+            id="in_label"
+            [options]="cities" 
+            [(ngModel)]="selectedCitiesWithFloatLabel" 
+            optionLabel="name" 
+            [maxSelectedLabels]="3" 
+            styleClass="w-full md:w-80">
+          </p-multiselect>
+          <label for="in_label">In Label</label>
+        </p-floatlabel>
+      </div>
+    </div>
+  </div>
+</div>

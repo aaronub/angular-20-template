@@ -1,0 +1,18 @@
+<!-- Basic
+FileUpload basic mode provides a simpler UI as an alternative to default advanced mode. -->
+<p-fileupload #fu mode="basic" chooseLabel="Choose" chooseIcon="pi pi-upload" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)" />
+<p-button label="Upload" (onClick)="fu.upload()" severity="secondary" />
+
+
+<!-- Advanced
+FileUpload is an advanced uploader with dragdrop support, multi file uploads, auto uploading, progress tracking and validations. -->
+<p-fileupload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload2($event)" [multiple]="true" accept="image/*" maxFileSize="1000000" mode="advanced">
+    <ng-template #empty>
+        <div>Drag and drop files to here to upload.</div>
+    </ng-template>
+    <ng-template #content>
+        <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+        </ul>
+    </ng-template>
+</p-fileupload>
