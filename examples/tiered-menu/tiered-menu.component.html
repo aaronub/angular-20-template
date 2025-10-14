@@ -1,0 +1,9 @@
+<!-- Basic
+TieredMenu requires a collection of menuitems as its model. -->
+<p-tieredmenu [model]="items" />
+
+
+<!-- Popup
+Popup mode is enabled by adding popup property and calling toggle method with an event of the target. -->
+<p-button label="Toggle" (click)="menu.toggle($event)" />
+<p-tieredmenu #menu [model]="items" [popup]="true" />

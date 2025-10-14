@@ -1,0 +1,61 @@
+<!-- Basic
+MultiSelect is used as a controlled component with ngModel property along with an options collection. Label and value of an option are defined with the optionLabel and optionValue properties respectively. Default property name for the optionLabel is label and value for the optionValue. If optionValue is omitted and the object has no value property, the object itself becomes the value of an option. Note that, when options are simple primitive values such as a string array, no optionLabel and optionValue would be necessary. -->
+<p-multiselect [options]="cities" [(ngModel)]="selectedCities" optionLabel="name" placeholder="Select Cities" [maxSelectedLabels]="3" class="w-full md:w-80" />
+
+
+<!-- Chips
+Selected values are displayed as a comma separated list by default, setting display as chip displays them as chips. -->
+<p-multiselect [options]="cities" [(ngModel)]="selectedCities" placeholder="Select Cities" optionLabel="name" display="chip" class="w-full md:w-80" />
+
+
+<!-- Filter
+MultiSelect provides built-in filtering that is enabled by adding the filter property. -->
+<p-multiselect [options]="cities" [(ngModel)]="selectedCities" [filter]="true" optionLabel="name" placeholder="Select Cities" [maxSelectedLabels]="3" class="w-full md:w-80" />
+
+
+<!-- Float Label
+A floating label appears on top of the input field when focused. Visit FloatLabel documentation for more information. -->
+<p-floatlabel class="w-full md:w-80">
+  <p-multiselect id="over_label" [(ngModel)]="value1" [options]="cities" optionLabel="name" filter [maxSelectedLabels]="3" class="w-full" />
+  <label for="over_label">Over Label</label>
+</p-floatlabel>
+
+<p-floatlabel class="w-full md:w-80" variant="in">
+  <p-multiselect id="in_label" [(ngModel)]="value2" [options]="cities" optionLabel="name" filter [maxSelectedLabels]="3" class="w-full" />
+  <label for="in_label">In Label</label>
+</p-floatlabel>
+
+<p-floatlabel class="w-full md:w-80" variant="on">
+  <p-multiselect id="on_label" [(ngModel)]="value3" [options]="cities" optionLabel="name" filter [maxSelectedLabels]="3" class="w-full" />
+  <label for="on_label">On Label</label>
+</p-floatlabel>
+
+
+<!-- Sizes
+MultiSelect provides small and large sizes as alternatives to the base. -->
+<p-multiselect [(ngModel)]="value1" [options]="cities" optionLabel="name" [maxSelectedLabels]="3" class="w-full md:w-80" size="small" placeholder="Small" />
+<p-multiselect [(ngModel)]="value2" [options]="cities" optionLabel="name" [maxSelectedLabels]="3" class="w-full md:w-80" placeholder="Normal" />
+<p-multiselect [(ngModel)]="value3" [options]="cities" optionLabel="name" [maxSelectedLabels]="3" class="w-full md:w-80" size="large" placeholder="Large" />
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused. -->
+<p-multiselect [options]="cities" [(ngModel)]="selectedCities" [disabled]="true" optionLabel="name" class="w-full md:w-80" />
+
+
+<!-- Invalid
+The invalid state is applied using the ⁠invalid property to indicate failed validation, which can be integrated with Angular Forms. -->
+<p-multiselect [options]="cities" [(ngModel)]="selectedCities1" [invalid]="value1" optionLabel="name" placeholder="Select Cities" [maxSelectedLabels]="3" class="w-full md:w-80" />
+
+
+<!-- Reactive Forms
+MultiSelect can also be used with reactive forms. In this case, the formControlName property is used to bind the component to a form control. -->
+<form [formGroup]="exampleForm" (ngSubmit)="onSubmit()" class="flex justify-center flex-col gap-4 w-full md:w-80">
+  <div class="flex flex-col gap-1">
+      <p-multiselect [options]="cities" formControlName="city" optionLabel="name" placeholder="Select Cities" [maxSelectedLabels]="3" [fluid]="true" [invalid]="isInvalid('city')" />
+      @if (isInvalid('city')) {
+          <p-message severity="error" size="small" variant="simple">City is required.</p-message>
+      }
+  </div>
+  <button pButton severity="secondary" type="submit"><span pButtonLabel>Submit</span></button>
+</form>

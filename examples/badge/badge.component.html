@@ -1,0 +1,31 @@
+<!-- Basic
+Content of the badge is specified using the value property. -->
+<p-badge value="2" />
+
+
+<!-- Directive
+Content of the badge is specified using the value property. -->
+<i class="pi pi-bell text-3xl" pBadge value="2"></i>
+
+
+<!-- Severity
+Severity defines the color of the badge, possible values are success, info, warn and danger -->
+<div class="card flex justify-center gap-2">
+    <p-badge [value]="2" severity="success" />
+    <p-badge [value]="9" severity="info" />
+    <p-badge [value]="3" severity="warn" />
+    <p-badge [value]="9" severity="danger" />
+</div>
+
+
+<!-- Overlay
+A badge can be added to any element by encapsulating the content with the OverlayBadge component. -->
+<p-overlaybadge value="2">
+    <i class="pi pi-bell" style="font-size: 2rem"></i>
+</p-overlaybadge>
+<p-overlaybadge value="4" severity="danger">
+    <i class="pi pi-calendar" style="font-size: 2rem"></i>
+</p-overlaybadge>
+<p-overlaybadge severity="danger">
+    <i class="pi pi-envelope" style="font-size: 2rem"></i>
+</p-overlaybadge>

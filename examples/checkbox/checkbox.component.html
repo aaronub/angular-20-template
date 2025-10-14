@@ -1,0 +1,16 @@
+<!-- Basic
+Binary checkbox is used as a controlled input with ngModel and binary properties. -->
+<p-checkbox [(ngModel)]="checked" [binary]="true" />
+
+
+<!-- Dynamic
+Checkboxes can be generated using a list of values. -->
+<div *ngFor="let category of categories" class="flex items-center">
+    <p-checkbox [inputId]="category.key" name="group" [value]="category" [(ngModel)]="selectedCategories" />
+    <label [for]="category.key" class="ml-2"> {{ category.name }} </label>
+</div>
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused. -->
+<p-checkbox [(ngModel)]="checked" [binary]="true" [disabled]="true" />

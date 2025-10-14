@@ -1,0 +1,36 @@
+<!-- Basic
+Textarea is applied to an input field with pTextarea directive. -->
+<textarea rows="5" cols="30" pTextarea  [(ngModel)]="value"></textarea>
+
+
+<!-- AutoResize
+When autoResize is enabled, textarea grows instead of displaying a scrollbar. -->
+<textarea rows="5"cols="30" pTextarea [autoResize]="true"></textarea>
+
+
+<!-- Float Label
+A floating label appears on top of the input field when focused. Visit FloatLabel documentation for more information. -->
+<p-floatlabel>
+    <textarea pTextarea id="over_label" [(ngModel)]="value1" rows="5" cols="30" style="resize: none" class="h-full"></textarea>
+    <label for="over_label">Over Label</label>
+</p-floatlabel>
+
+<p-floatlabel variant="in">
+    <textarea pTextarea id="over_label" [(ngModel)]="value2" rows="5" cols="30" style="resize: none" class="h-full"></textarea>
+    <label for="in_label">In Label</label>
+</p-floatlabel>
+
+<p-floatlabel variant="on">
+    <textarea pTextarea id="over_label" [(ngModel)]="value3" rows="5" cols="30" style="resize: none" class="h-full"></textarea>
+    <label for="on_label">On Label</label>
+</p-floatlabel>
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused. -->
+<textarea rows="5"cols="30" pTextarea [disabled]="true"></textarea>
+
+
+<!-- Invalid
+The invalid state is applied using the ⁠invalid property to indicate failed validation, which can be integrated with Angular Forms. -->
+<textarea rows="5" cols="30" pTextarea [(ngModel)]="value" [invalid]="!value" placeholder="Address"></textarea>

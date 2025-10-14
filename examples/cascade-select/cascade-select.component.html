@@ -1,0 +1,67 @@
+<!-- Basic
+CascadeSelect requires a value to bind and a collection of arbitrary objects with a nested hierarchy. optionGroupLabel is used for the text of a category and optionGroupChildren is to define the children of the category. Note that order of the optionGroupChildren matters and it should correspond to the data hierarchy. -->
+<p-cascadeselect [(ngModel)]="selectedCity" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Select a City" />
+
+
+<!-- Template
+Label of an option is used as the display text of an item by default, for custom content support define an option template that gets the option instance as a parameter. In addition value, dropdownicon, loadingicon, and optiongroupicon slots are provided for further customization.   -->
+<p-cascadeselect [(ngModel)]="selectedCity" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" [style]="{ minWidth: '14rem' }" placeholder="Select a City">
+    <ng-template #option let-option>
+        <div class="flex items-center">
+            <img *ngIf="option.states" src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'mr-2 flag flag-' + option.code.toLowerCase()" style="width: 18px" />
+            <i class="pi pi-compass mr-2" *ngIf="option.cities"></i>
+            <i class="pi pi-map-marker mr-2" *ngIf="option.cname"></i>
+            <span>{{ option.cname || option.name }}</span>
+        </div>
+    </ng-template>
+    <ng-template #triggericon>
+        <i class="pi pi-map"></i>
+    </ng-template>
+    <ng-template #header>
+        <div class="font-medium px-3 py-2">Available Countries</div>
+    </ng-template>
+    <ng-template #footer>
+        <div class="px-3 py-1">
+            <p-button label="Add New" fluid severity="secondary" text size="small" icon="pi pi-plus" />
+        </div>
+    </ng-template>
+</p-cascadeselect>
+
+
+<!-- Float Label
+A floating label appears on top of the input field when focused. Visit FloatLabel documentation for more information. -->
+<div class="card flex flex-wrap justify-center items-end gap-4">
+    <p-floatlabel class="w-full md:w-56">
+        <p-cascadeselect [(ngModel)]="value1" inputId="over_label" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" styleClass="w-full" />
+        <label for="over_label">Over Label</label>
+    </p-floatlabel>
+
+    <p-floatlabel class="w-full md:w-56" variant="in">
+        <p-cascadeselect [(ngModel)]="value2" inputId="in_label" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" styleClass="w-full" />
+        <label for="in_label">In Label</label>
+    </p-floatlabel>
+
+    <p-floatlabel class="w-full md:w-56" variant="on">
+        <p-cascadeselect [(ngModel)]="value3" inputId="on_label" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" styleClass="w-full" />
+        <label for="on_label">On Label</label>
+    </p-floatlabel>
+</div>
+
+
+<!-- Sizes
+CascadeSelect provides small and large sizes as alternatives to the base. -->
+<div class="card flex flex-col items-center gap-4">
+    <p-cascadeselect [(ngModel)]="value1" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" styleClass="w-56" size="small" placeholder="Small" />
+    <p-cascadeselect [(ngModel)]="value2" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" styleClass="w-56" placeholder="Normal" />
+    <p-cascadeselect [(ngModel)]="value3" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" styleClass="w-56" size="large" placeholder="Large" />
+</div>
+
+
+<!-- Invalid
+The invalid state is applied using the ⁠invalid property to indicate failed validation, which can be integrated with Angular Forms. -->
+<p-cascadeselect [(ngModel)]="selectedCity" [invalid]="!selectedCity" [options]="countries" optionLabel="cname" optionGroupLabel="name" [optionGroupChildren]="['states', 'cities']" class="w-full sm:w-56" placeholder="Select a City" />
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused. -->
+<p-cascadeselect [disabled]="true" placeholder="Disabled" [style]="{ minWidth: '14rem' }" />

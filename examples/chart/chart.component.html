@@ -1,0 +1,13 @@
+<!-- Chart.js
+To begin with, first you must install the charts.js package using npm and then include it in your project. An example with CLI would be:
+npm install chart.js --save -->
+
+
+<!-- Basic
+A chart is configured with 3 properties; type, data and options. Chart type is defined using the type property that accepts pie, doughtnut, line, bar, radar and polarArea as a value. The data defines datasets represented with the chart and the options provide numerous customization options to customize the presentation. -->
+<p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+
+
+Doughnut
+A doughnut chart is a variant of the pie chart, with a blank center allowing for additional information about the data as a whole to be included.
+<p-chart type="doughnut" [data]="data" [options]="options" class="w-full md:w-[30rem]" />

@@ -1,0 +1,70 @@
+<!-- Basic
+Select is used as a controlled component with ngModel property along with an options collection. Label and value of an option are defined with the optionLabel and optionValue properties respectively. Note that, when options are simple primitive values such as a string array, no optionLabel and optionValue would be necessary. -->
+<p-select [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
+
+
+<!-- Filter
+Select provides built-in filtering that is enabled by adding the filter property. -->
+<p-select [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a Country" class="w-full md:w-56">
+  <ng-template #selectedItem let-selectedOption>
+      <div class="flex items-center gap-2">
+          <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + selectedCountry.code.toLowerCase()" style="width: 18px" />
+          <div>{{ selectedOption.name }}</div>
+      </div>
+  </ng-template>
+  <ng-template let-country #item>
+      <div class="flex items-center gap-2">
+          <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" style="width: 18px" />
+          <div>{{ country.name }}</div>
+      </div>
+  </ng-template>
+</p-select>
+
+
+<!-- Float Label
+A floating label appears on top of the input field when focused. Visit FloatLabel documentation for more information. -->
+<p-floatlabel class="w-full md:w-56">
+  <p-select [(ngModel)]="value1" inputId="over_label" [options]="cities" optionLabel="name" class="w-full" />
+  <label for="over_label">Over Label</label>
+</p-floatlabel>
+
+<p-floatlabel class="w-full md:w-56" variant="in">
+  <p-select [(ngModel)]="value2" inputId="in_label" [options]="cities" optionLabel="name" class="w-full" variant="filled" />
+  <label for="in_label">In Label</label>
+</p-floatlabel>
+
+<p-floatlabel class="w-full md:w-56" variant="on">
+  <p-select [(ngModel)]="value3" inputId="on_label" [options]="cities" optionLabel="name" class="w-full" />
+  <label for="on_label">On Label</label>
+</p-floatlabel>
+
+
+<!-- Sizes
+Select provides small and large sizes as alternatives to the base. -->
+<p-select [(ngModel)]="value1" [options]="cities" optionLabel="name" size="small" placeholder="Small" class="w-full md:w-56" />
+<p-select [(ngModel)]="value2" [options]="cities" optionLabel="name" placeholder="Normal" class="w-full md:w-56" />
+<p-select [(ngModel)]="value3" [options]="cities" optionLabel="name" size="large" placeholder="Large" class="w-full md:w-56" />
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused. -->
+<p-select [options]="cities" [(ngModel)]="selectedCity" placeholder="Select a City" optionLabel="name" [disabled]="true" class="w-full md:w-56" />
+
+
+<!-- Invalid
+The invalid state is applied using the ⁠invalid property to indicate failed validation, which can be integrated with Angular Forms. -->
+<p-select [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" [showClear]="true" [invalid]="value" placeholder="Select a City" class="w-full md:w-56" />
+
+
+<!-- Reactive Forms
+Select can also be used with reactive forms. In this case, the formControlName property is used to bind the component to a form control. -->
+<form [formGroup]="exampleForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 w-full sm:w-56">
+  <div class="flex flex-col gap-1">
+      <p-select formControlName="selectedCity" [options]="cities" [invalid]="isInvalid('city')" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
+      @if (isInvalid('city')) {
+          <p-message severity="error" size="small" variant="simple">City is required.</p-message>
+      }
+  </div>
+  <button pButton severity="secondary" type="submit"><span pButtonLabel>Submit</span></button>
+</form>
+

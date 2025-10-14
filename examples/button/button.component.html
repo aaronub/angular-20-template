@@ -1,0 +1,84 @@
+<!-- Basic
+Text to display on a button is defined with the label property. -->
+<p-button label="Submit" />
+
+
+<!-- Link
+A button can be rendered as a link when link property is present, while the pButton directive can be applied on an anchor element to style the link as a button. -->
+<p-button label="Link" link />
+<a href="https://angular.dev/" pButton target="_blank" rel="noopener noreferrer">
+    <span pButtonLabel>Angular Website</span>
+</a>
+<a routerLink="/" pButton>
+    <span pButtonLabel>Router Link</span>
+</a>
+
+
+<!-- Icons
+Icon of a button is specified with icon property and position is configured using iconPos attribute. -->
+<p-button icon="pi pi-home" aria-label="Save" />
+<p-button label="Profile" icon="pi pi-user" />
+<p-button label="Save" icon="pi pi-check" iconPos="right" />
+
+
+<!-- Loading
+Busy state is controlled with the loading property. -->
+<p-button label="Search" icon="pi pi-check" [loading]="loading" (onClick)="load()" />
+
+
+<!-- Severity
+Severity defines the type of button. -->
+<p-button label="Primary" />
+<p-button label="Secondary" severity="secondary" />
+<p-button label="Success" severity="success" />
+<p-button label="Info" severity="info" />
+<p-button label="Warn" severity="warn" />
+<p-button label="Help" severity="help" />
+<p-button label="Danger" severity="danger" />
+<p-button label="Contrast" severity="contrast" />
+
+
+<!-- Disabled
+When disabled is present, the element cannot be edited and focused. -->
+<p-button label="Submit" [disabled]="true" />
+
+
+<!-- Rounded
+Rounded buttons have a circular border radius. -->
+<p-button label="Primary" [rounded]="true" />
+<p-button label="Secondary" [rounded]="true" severity="secondary" />
+
+
+<!-- Text
+Text buttons are displayed as textual elements. -->
+<p-button label="Primary" variant="text" />
+<p-button label="Secondary" variant="text" severity="secondary" />
+
+
+<!-- Outlined
+Outlined buttons display a border without a background initially. -->
+<p-button label="Primary" variant="outlined" />
+<p-button label="Secondary" variant="outlined" severity="secondary" />
+
+
+<!-- Icon Only
+Buttons can have icons without labels. -->
+<p-button icon="pi pi-check" />
+<p-button icon="pi pi-check" [rounded]="true" />
+<p-button icon="pi pi-check" [rounded]="true" [outlined]="true" />
+<p-button icon="pi pi-check" [rounded]="true" [text]="true" />
+
+
+<!-- Badge
+Buttons have built-in badge support with badge and badgeClass properties. -->
+<p-button label="Emails" badge="2" styleClass="m-0" />
+<p-button label="Messages" icon="pi pi-users" badge="2" badgeSeverity="contrast" styleClass="m-0" [outlined]="true" />
+
+
+<!-- Sizes
+Button provides small and large sizes as alternatives to the standard. -->
+<p-button label="Small" icon="pi pi-check" size="small" />
+<p-button label="Normal" icon="pi pi-check" />
+<p-button label="Large" icon="pi pi-check" size="large" />
+
+

@@ -1,0 +1,17 @@
+<!-- Basic
+Menu requires a collection of menuitems as its model. The function to invoke when an item is clicked is defined using the command property. -->
+<p-toast />
+<p-menu [model]="items" />
+
+
+
+<!-- Popup
+Popup mode is enabled by setting popup property to true and calling toggle method with an event of the target. -->
+<p-menu #menu [model]="items2" [popup]="true" />
+<p-button (click)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
+
+
+
+<!-- Router
+Menu items support navigation via routerLink, programmatic routing using commands, or external URLs. -->
+<p-menu [model]="items3" />
