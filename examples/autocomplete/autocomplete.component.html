@@ -41,6 +41,45 @@ AutoComplete provides small and large sizes as alternatives to the base. -->
 </div>
 
 
+<!-- Chips
+When typeahead is disabled and multiple is enabled, AutoComplete can work like a chips component. Various features allow flexible item addition: use addOnBlur to add items when the input loses focus, addOnTab to add items with the Tab key, and separator to define characters for adding multiple items at once. -->
+<!-- With Add On Blur -->
+<p-autocomplete
+    [(ngModel)]="valueBlur"
+    multiple
+    [typeahead]="false"
+    [addOnBlur]="true"
+    placeholder="Type and click outside to add..."
+/>
+<!-- With Add On Tab -->
+<p-autocomplete
+    [(ngModel)]="valueTab"
+    multiple
+    [typeahead]="false"
+    [addOnTab]="true"
+    placeholder="Type and press Tab to add..."
+/>
+<!-- With Separator -->
+<p-autocomplete
+    [(ngModel)]="valueSeparator"
+    multiple
+    [typeahead]="false"
+    separator=","
+    placeholder="Type items separated by comma..."
+/>
+<!-- Combined Features -->
+<p-autocomplete
+    [(ngModel)]="valueCombined"
+    multiple
+    [typeahead]="false"
+    [addOnBlur]="true"
+    [addOnTab]="true"
+    separator=","
+    placeholder="Use Tab, Blur, or Comma to add items..."
+/>
+
+
+
 <!-- Invalid:
 The invalid state is applied using the ⁠invalid property to indicate failed validation, which can be integrated with Angular Forms. -->
 <p-autocomplete [invalid]="!value" [(ngModel)]="selectedItem" [suggestions]="suggestions" (completeMethod)="search($event)" placeholder="Code" />

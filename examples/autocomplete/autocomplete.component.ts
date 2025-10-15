@@ -20,6 +20,10 @@ export class AutocompleteDemo {
     value1: any;
     value2: any;
     value3: any;
+    valueBlur: any[] = [];
+    valueTab: any[] = [];
+    valueSeparator: any[] = [];
+    valueCombined: any[] = [];
 
     search(event: AutoCompleteCompleteEvent) {
         this.items = [...Array(10).keys()].map(item => event.query + '-' + item);
