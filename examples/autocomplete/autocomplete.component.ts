@@ -28,4 +28,32 @@ export class AutocompleteDemo {
     search(event: AutoCompleteCompleteEvent) {
         this.items = [...Array(10).keys()].map(item => event.query + '-' + item);
     }
+
+    selectedCountry: any;
+
+    filteredCountries: any[] | undefined;
+
+    countries: any[] = [                    
+        { name: 'United States', code: 'US' },
+        { name: 'Canada', code: 'CA' },
+        { name: 'United Kingdom', code: 'UK' },
+        { name: 'Germany', code: 'DE' },
+        { name: 'France', code: 'FR' },
+        { name: 'India', code: 'IN' },
+        { name: 'China', code: 'CN' },
+    ];
+
+    filterCountry(event: AutoCompleteCompleteEvent) {
+        let filtered: any[] = [];
+        let query = event.query;
+
+        for (let i = 0; i < (this.countries as any[]).length; i++) {
+            let country = (this.countries as any[])[i];
+            if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+                filtered.push(country);
+            }
+        }
+
+        this.filteredCountries = filtered;
+    }
 }
