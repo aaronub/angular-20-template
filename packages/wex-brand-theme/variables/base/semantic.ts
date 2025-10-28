@@ -22,9 +22,9 @@ export const semantic = {
         800: "{sky.800}",
         900: "{sky.900}",
         950: "{sky.950}",
-        color: "{sky.600}",
+        color: "{sky.700}",
         contrast: {
-            color: "{surface.300}"
+            color: "{surface.0}"
         },
         hover: {
             color: "{primary.800}"
